@@ -1,0 +1,89 @@
+book{
+    bookId
+    bookName
+    writer
+    publishDate
+    stock
+}
+
+user{
+    userId
+    email
+    password
+}
+
+/api/login{
+    send{
+        email
+        password
+    }
+    return{
+        userId
+        token
+    }
+}
+
+/api/getbook{
+    send{
+        may{
+            bookName
+            writer
+            startDate
+            endDate
+        }
+        must{
+            page
+            size
+        }
+    }
+    return{
+        *
+    }
+}
+
+/api/book/borrow{
+    send{
+        bookId
+        userId
+    }
+}
+
+/api/borrowedBooks{
+    send{
+        may{
+            bookName
+            writer
+            startDate
+            endDate
+        }
+        must{
+            userId
+        }
+    }
+    return{
+        *
+    }
+}
+
+/api/book/return{
+    send{
+        bookId
+        userId
+    }
+}
+
+/api/book/add{
+    send{
+        bookName
+        writer
+        publishDate
+        stock
+    }
+}
+
+/api/book/change{
+    send{
+        bookId
+        stock
+    }
+}

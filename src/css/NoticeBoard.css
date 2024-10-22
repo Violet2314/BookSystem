@@ -1,0 +1,234 @@
+@charset "UTF-8";
+
+/* 设置整体布局 */
+.NoticeBoard {
+    box-sizing: border-box;
+    width: 100%;
+    height: 100%;
+    background-color: #1a1a1a;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    font-family: Arial, sans-serif;
+}
+
+.news-box {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* 新闻标题 */
+.page-title {
+    font-size: 24px;
+    font-weight: bold;
+    color: #ffe692e5;
+    text-align: center;
+    margin-bottom: 20px;
+    position: relative;
+    transition: font-size 0.5s ease, text-align 0.5s ease;
+}
+
+/* 标题下划线 */
+.page-title::after {
+    content: "";
+    width: 80px;
+    height: 3px;
+    background-color: #9d9895;
+    display: block;
+    margin: 10px auto 0;
+    transition: width 0.5s ease, left 0.5s ease;
+}
+
+/* 新闻主要部分 */
+.new-main {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    transition: flex-direction 0.5s ease;
+}
+
+.news-container {
+    transition: width 0.5s ease;
+}
+
+/* 滚动播片的区域 */
+.news-banner {
+    height: 420px;
+    background-color: #eaeaea;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    color: #777;
+    transition: width 0.5s ease, margin-top 0.5s ease;
+}
+
+/* 选项卡导航 */
+.menu-tab {
+    margin-top: 20px;
+}
+
+.tab-container {
+    display: flex;
+    justify-content: left;
+    position: relative;
+}
+
+.tab-item {
+    padding: 10px 20px;
+    font-size: 16px;
+    color: #f2f2f2;
+    cursor: pointer;
+    position: relative;
+    transition: color 0.3s ease;
+}
+
+.tab-now {
+    color: #ac9d75;
+}
+
+/* 活动的当前选项卡下划线 */
+.tab-navi {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 2px;
+    background-color: #9d9895;
+    transition: all 0.3s ease;
+}
+
+.tab-navi-now {
+    position: absolute;
+    bottom: 2px;
+    left: 20px;
+    background-color: #c3af7c;
+    height: 3px;
+    width: 1.8em;
+    transition: all 0.3s ease;
+}
+
+/* 文章列表样式 */
+.article-container {
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    width: 100%;
+    margin-top: 20px;
+    min-height: 420px;
+    transition: transform 0.5s ease;
+}
+
+.article-lists {
+    margin-top: 0.5em;
+    position: absolute;
+    transition: transform 0.5s ease;
+    width: 100%;
+    /* 每个内容占据 50% */
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.slide-fade-enter-active,
+.slide-fade-leave-active {
+    transition: transform 0.5s ease;
+    /* 平滑过渡效果 */
+}
+
+.slide-fade-enter-to {
+    transform: translateX(-110%);
+    /* 最终进入到中间 */
+}
+
+.slide-fade-leave-to {
+    transform: translateX(-110%);
+    /* 向左边退出到页面外 */
+}
+
+/* "更多"按钮 */
+.new-more {
+    margin-top: 1em;
+    display: inline-flex;
+    /* 使用 flexbox 对齐内容 */
+    align-items: center;
+    /* 垂直居中对齐 */
+    background-color: transparent;
+    /* 背景颜色透明 */
+    border: 2px solid #D4B64D;
+    /* 边框颜色 */
+    border-top-right-radius: 20px;
+    /* 圆角 */
+    padding: 10px 20px;
+    /* 内边距 */
+    color: #D4B64D;
+    /* 字体颜色 */
+    font-size: 16px;
+    /* 字体大小 */
+    cursor: pointer;
+    /* 鼠标悬停时为手型 */
+    transition: background-color 0.3s, transform 0.3s;
+    /* 动画效果 */
+    position: relative;
+    /* 为后面伪元素做准备 */
+}
+
+.new-more:hover {
+    background-color: rgba(212, 182, 77, 0.1);
+    /* 悬停时背景颜色 */
+    /* transform: translateY(-2px); 悬停时轻微上移 */
+}
+
+.arrow-icon {
+    margin-left: 10px;
+    /* 左侧间距 */
+    font-size: 18px;
+    /* 图标大小 */
+    color: #D4B64D;
+    /* 图标颜色 */
+}
+
+/* 如果需要使用伪元素添加一个装饰性背景 */
+.new-more::after {
+    content: '';
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 20px;
+    /* 符号的宽度 */
+    height: 100%;
+    /* 高度与按钮相同 */
+    border-radius: 0 20px 20px 0;
+    /* 右侧圆角 */
+    background-color: transparent;
+    /* 背景颜色透明 */
+}
+
+@media screen and (min-width: 1048px) {
+    .news-box {
+        padding-top: 4%;
+    }
+
+    .new-main {
+        flex-direction: row-reverse;
+    }
+
+    .news-banner {
+        width: 50%;
+        margin-top: 5em;
+    }
+
+    .news-container {
+        width: 50%;
+    }
+
+    .page-title {
+        text-align: left;
+        font-size: 2.5em;
+    }
+
+    .page-title::after {
+        width: 99%;
+        position: absolute;
+        left: 0;
+    }
+}
