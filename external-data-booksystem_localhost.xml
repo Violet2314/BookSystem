@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<data>
+  <object-set>
+    <table path="booksystem.user_haved_borrow">
+      <table path="booksystem.book" from="book_id" to="book_id"/>
+      <table path="booksystem.user" from="user_id" to="user_id"/>
+    </table>
+  </object-set>
+</data>

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="bookSystem.mapper.BookMapper">
+    <select id="getBook" resultType="bookSystem.pojo.Book">
+        SELECT * FROM book
+        <where>
+            <if test="bookName != null and bookName != '' ">
+                book_name like concat('%',#{bookName},'%')
+            </if>
+            <if test="writer != null and writer != '' ">
+                and writer like concat('%',#{writer},'%')
+            </if>
+            <if test="startDate != null and endDate != null">
+                and publish_data between #{startData} and #{endData}
+            </if>
+        </where>
+    </select>
+    <!-- 用JOIN作为表来写，来达到全部返回的目的  -->
+    <select id="getBorrowed" resultType="bookSystem.pojo.Book">
+        SELECT b.*
+        FROM book b
+            JOIN (
+            SELECT book_id
+            FROM user_haved_borrow
+            WHERE user_id = #{userId}
+        ) ub ON b.book_id = ub.book_id;
+    </select>
+    <delete id="earseUserBookRecord">
+        DELETE FROM user_haved_borrow
+        WHERE book_id = #{bookId} AND user_id = #{Id}
+        LIMIT 1
+    </delete>
+</mapper>
